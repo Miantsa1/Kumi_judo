@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{# Ce template hérite de base.html pour garder la structure commune #}
+
+{% block content %}
+{# Début du bloc de contenu principal spécifique à cette page #}
+
+<h1 class="text-center display-3">Ajouter calendrier</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {# Formulaire POST pour soumettre les données. enctype est nécessaire si on ajoute des fichiers plus tard #}
+    {% csrf_token %}
+    {# Protection contre les attaques CSRF (Cross-Site Request Forgery) #}
+    
+    {{ form.as_p }}
+    {# Affiche le formulaire Django en paragraphes #}
+
+   <button type="submit">Ajouter</button>
+</form>
+{% endblock %}
+{# Fin du bloc de contenu #}

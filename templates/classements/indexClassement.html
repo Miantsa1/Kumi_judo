@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{# Utilisation de base.html comme layout de base #}
+
+{% block content %}
+{# Début du contenu principal #}
+
+
+<div class="container mt-5">
+    <h1 class="text-center display-4 mb-4">Classements</h1>
+
+    <div class="mb-3 text-end">
+        <a href="{% url 'classements:create_classement' %}" class="btn btn-success">Ajouter classement</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Judokas</th>
+                    <th>Club</th>
+                    <th>Cat_age</th>
+                    <th>Cat_poids</th>
+                    <th>Points</th>
+                    <th>Classement</th>
+                </tr>
+            </thead>
+            <tbody>
+                {# Boucle sur tous les objets classement envoyés par la vue #}
+                {% for classement in classements %}
+                <tr>
+                    <td>
+                        <img src="{{ classement.judokas.image.url }}" alt="Image de {{ classement.judokas.nom }}" width="60" height="60" style="object-fit: cover; border-radius: 50%;">
+                        {{ classement.judokas.nom }} {{ classement.judokas.prenom }}
+                    </td>                    
+                    <td>{{ classement.judokas.club}}</td>
+                    <td>{{ classement.judokas.cat_age }}</td>
+                    <td>{{ classement.judokas.cat_poids }} kg</td>
+                    <td>{{ classement.point }}</td>
+                    <td>{{ classement.classements }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center text-muted">Aucune commande enregistrée.</td>
+                </tr>
+                {% endfor %}
+                {# Fin de la boucle #}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+{# Fin du contenu #}
+

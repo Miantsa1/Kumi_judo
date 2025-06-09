@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{# Utilisation de base.html comme layout de base #}
+
+{% block content %}
+{# Début du contenu principal #}
+
+<div class="mb-3 text-end">
+    <a href="{% url 'calendriers:create_calendrier' %}" class="btn btn-success">Ajouter un calendrier</a>
+</div>
+
+<div class="row">
+    {# Boucle sur tous les objets calendrier envoyés par la vue #}
+    {% for calendrier in calendriers %}
+    <div class=""><br><br>
+        <div class="card" style="width: 70rem;">
+            <div class="card-body">
+                <h2 class="card-title">{{ calendrier.titre}}</h2>
+                <p class="card-text">{{ calendrier.date_publication}}</p><br>
+                <p class="card-text">{{ calendrier.description}}</p>
+                <p class="card-text"> Date de compétition : {{ calendrier.date_competiton}}</p>
+                <p class="card-text"> Endroit : {{ calendrier.endroit}}</p>
+            
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {# Fin de la boucle #}
+</div>
+
+
+{% endblock %}
+{# Fin du contenu #}
